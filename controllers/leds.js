@@ -16,7 +16,7 @@ const switchLed = (req, res) => {
 };
 
 const readLeds = (req, res) => {
-  res.status(200).json({
+  res.status(200).send({
     leds
   });
 };
