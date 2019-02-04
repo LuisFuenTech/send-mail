@@ -1,41 +1,27 @@
-const leds = [
-  { id: 1, isOn: false, name: "led1" },
-  { id: 2, isOn: false, name: "led2" },
-  { id: 3, isOn: false, name: "led3" }
-];
+const { leds } = require("../db.json");
 
-const ledOn = (req, res) => {
-  const { id } = req.params;
+const switchLed = (req, res) => {
+  const { id, action } = req.params;
 
-  leds.map(led => {
-    if (led["id"] == id) led.isOn = true;
+  leds.forEach((led, i) => {
+    if (led.id === Number(id)) {
+      led.isOn = action == "on" ? true : action == "off" ? false : "";
+    }
   });
 
-  res.status(200).send({
-    leds
-  });
-};
-
-const ledOff = (req, res) => {
-  const { id } = req.params;
-
-  leds.map(led => {
-    if (led["id"] == id) led.isOn = false;
-  });
-
-  res.status(200).send({
-    leds
+  res.status(200).json({
+    success: true,
+    message: "Led updated"
   });
 };
 
 const readLeds = (req, res) => {
-  res.status(200).send({
+  res.status(200).json({
     leds
   });
 };
 
 module.exports = {
-  ledOn,
-  ledOff,
+  switchLed,
   readLeds
 };
