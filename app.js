@@ -4,8 +4,6 @@ const express = require("express");
 const app = express();
 const client = require("./routes/clients");
 
-app.set("json spaces", 4);
-
 app.set("port", process.env.PORT || 3000);
 
 app.use(morgan("dev"));
