@@ -3,17 +3,17 @@
     {
       "id": 16,
       "isOn": false,
-      "name": "led1"
+      "name": "1"
     },
     {
       "id": 5,
       "isOn": false,
-      "name": "led2"
+      "name": "2"
     },
     {
       "id": 4,
       "isOn": false,
-      "name": "led3"
+      "name": "3"
     }
   ]
 }
