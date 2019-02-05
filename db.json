@@ -1,17 +1,17 @@
 {
   "leds": [
     {
-      "id": 1,
+      "id": 16,
       "isOn": false,
       "name": "led1"
     },
     {
-      "id": 2,
+      "id": 5,
       "isOn": false,
       "name": "led2"
     },
     {
-      "id": 3,
+      "id": 4,
       "isOn": false,
       "name": "led3"
     }
