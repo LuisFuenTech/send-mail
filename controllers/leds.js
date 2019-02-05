@@ -21,6 +21,14 @@ const getLeds = (req, res) => {
   });
 };
 
+const getInfo = (req, res) => {
+  res.status(200).send({
+    leds,
+    sensors,
+    readSensor
+  });
+};
+
 const readSensors = (req, res) => {
   readSensor = !readSensor;
 
@@ -44,5 +52,6 @@ module.exports = {
   switchLed,
   getLeds,
   readSensors,
-  showValues
+  showValues,
+  getInfo
 };
