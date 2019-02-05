@@ -4,7 +4,7 @@ const switchLed = (req, res) => {
   const { id, action } = req.params;
 
   leds.forEach(led => {
-    if (led.name === Number(id)) {
+    if (led.name === id) {
       led.isOn = action == "on" ? true : action == "off" ? false : "";
     }
   });
