@@ -22,7 +22,7 @@
       "name": "Temperature"
     },
     {
-      "temp": 0.0,
+      "humidity": 0.0,
       "name": "Humidity"
     }
   ],
