@@ -1,4 +1,4 @@
-const { leds, readSensor, sensors } = require("../db.json");
+var { leds, readSensor, sensors } = require("../db.json");
 
 const switchLed = (req, res) => {
   const { id, action } = req.params;
@@ -21,7 +21,7 @@ const getLeds = (req, res) => {
   });
 };
 
-const readSensor = (req, res) => {
+const readSensors = (req, res) => {
   readSensor = !readSensor;
 
   res.status(200).send({
@@ -33,7 +33,7 @@ const showValues = (req, res) => {
   readSensor = !readSensor;
   const { temp, humidity } = req.params;
   sensors[0]["temp"] = temp;
-  sensors[0]["humidity"] = humidity;
+  sensors[1]["humidity"] = humidity;
 
   res.status(200).send({
     sensors
@@ -43,6 +43,6 @@ const showValues = (req, res) => {
 module.exports = {
   switchLed,
   getLeds,
-  readSensor,
+  readSensors,
   showValues
 };
