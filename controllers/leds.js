@@ -39,7 +39,7 @@ const readSensors = (req, res) => {
 
 const showValues = (req, res) => {
   readSensor = !readSensor;
-  const { temp, humidity } = req.params;
+  const { temp, humidity } = req.body;
   sensors[0]["temp"] = Number(temp);
   sensors[1]["humidity"] = Number(humidity);
 
