@@ -2,9 +2,9 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const express = require("express");
 const app = express();
-const client = require("./routes/clients");
+const client = require("./users/usersRoutes").default.default.default.default;
 
-app.set("port", process.env.PORT || 3000);
+//app.set("port", process.env.PORT || 3000);
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
