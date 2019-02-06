@@ -1,22 +1,31 @@
-var { leds, readSensor, sensors } = require("../db.json");
+const axios = require("axios");
+//var { leds, readSensor, sensors } = require("../db.json");
 
-const switchLed = (req, res) => {
-  //Make the request to nodemcu switch states of leds
-  //if response is 200 then update db and notify user
+module.exports.switchLed = (req, res) => {
+  const { id, action } = req.params;
+
+  axios
+    .get(`http://192.168.0.14/led?led=${id}&action=${action}`)
+    .then(response => res.status(200).send(response.data))
+    .catch(error => res.status(503).send({ Error: "Can't reach led" }));
 };
 
-const getInfo = (req, res) => {
-  //Read values from database and Nodemcu and show them to users
-  //if response is 200 then update db and notify user
+module.exports.getInfo = (req, res) => {
+  res.status(200).send({
+    message: "Hey"
+  });
 };
 
-const readSensors = (req, res) => {
-  //Make the request to nodemcu read sensors
-  //if response is 200 then update db and notify user
+module.exports.readSensors = (req, res) => {
+  axios
+    .get(`http://192.168.0.14/sensor`)
+    .then(response => res.status(200).send(response.data))
+    .catch(error => res.status(503).send({ Error: "Can't reach sensor" }));
 };
-
+/*
 module.exports = {
   switchLed,
-  readSensors,
-  getInfo
+  getInfo,
+  readSensors
 };
+*/

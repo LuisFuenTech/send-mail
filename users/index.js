@@ -1,2 +1,2 @@
-export const usersController = require("./usersController");
-export const userRoutes = require("./usersRoutes");
+module.exports.usersController = require("./usersController");
+module.exports.usersRoutes = require("./usersRoutes");
