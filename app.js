@@ -7,7 +7,7 @@ const { usersRoutes } = require("./users/index");
 
 app.use(cors());
 app.get("/", function(req, res, next) {
-  res.json({ msg: "This is CORS-enabled for all origins!" });
+  res.send({ msg: "This is CORS-enabled for all origins!" });
 });
 
 app.use(morgan("dev"));
