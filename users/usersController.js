@@ -14,19 +14,20 @@ const switchLed = (req, res) => {
       const { status } = response.data;
 
       Led.findOneAndUpdate({ id: id }, { status: status }).then(led => {
-        console.log(led);
         if (led) return res.status(200).send({ Led: id, status: action });
       });
     })
     .catch(error => res.status(503).send({ Error: "Can't reach led out" }));
 };
 
-const getInfo = (req, res) => {
-  Led.find()
-    .then(leds => {
-      res.status(200).send({ Leds: leds });
-    })
+const getInfo = async (req, res) => {
+  const leds = await Led.find()
+    .then //leds => {
+    //res.status(200).send({ Leds: leds });
+    ()
     .catch(err => res.status(503).send({ Error: err }));
+
+  res.status(200).send({ Leds: leds });
 };
 
 const readSensors = (req, res) => {
