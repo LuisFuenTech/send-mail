@@ -1,0 +1,30 @@
+{
+  "leds": [
+    {
+      "id": 16,
+      "isOn": false,
+      "name": "1"
+    },
+    {
+      "id": 5,
+      "isOn": false,
+      "name": "2"
+    },
+    {
+      "id": 4,
+      "isOn": false,
+      "name": "3"
+    }
+  ],
+  "sensors": [
+    {
+      "temp": 0.0,
+      "name": "Temperature"
+    },
+    {
+      "humidity": 0.0,
+      "name": "Humidity"
+    }
+  ],
+  "readSensor": false
+}

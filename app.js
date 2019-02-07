@@ -15,10 +15,6 @@ app.get("/", function(req, res, next) {
   res.send({ msg: "This is CORS-enabled for all origins!" });
 });
 
-app.post("/", function(req, res, next) {
-  res.send({ msg: "This is CORS-enabled for all origins!" });
-});
-
 //Cors
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
