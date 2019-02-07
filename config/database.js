@@ -1,6 +1,4 @@
-//const { database } = require("./config/index");
-
-const app = require("./bin/WWW");
+const app = require("../bin/WWW");
 const mongoose = require("mongoose");
 
 mongoose
