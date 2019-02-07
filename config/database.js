@@ -2,7 +2,7 @@ const app = require("../bin/WWW");
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://localhost/smarthome", {
+  .connect("mongodb://localhost:27017/smarthome", {
     useNewUrlParser: true
   })
   .then(() => {

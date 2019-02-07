@@ -3,10 +3,10 @@ const { Schema } = mongoose;
 
 const sensorSchema = new Schema(
   {
-    id: String,
-    name: String,
-    type: String,
-    valueRead: Number
+    id: { type: String },
+    name: { type: String },
+    type: { type: String },
+    valueRead: { type: String }
   },
   {
     versionKey: false

@@ -1,12 +1,10 @@
-//Using promises on mongoose
-const mongoose = require("mongoose");
-mongoose.Promise = global.Promise;
 const axios = require("axios");
 const Led = require("../leds/led");
 const Sensor = require("../sensors/sensor");
-const typeSensors = ["d01", "dh1"];
+const mongoose = require("mongoose");
+mongoose.Promise = global.Promise;
 
-module.exports.switchLed = (req, res) => {
+const switchLed = (req, res) => {
   const { id, action } = req.params;
 
   axios
@@ -15,20 +13,15 @@ module.exports.switchLed = (req, res) => {
       console.log(response.data);
       const { status } = response.data;
 
-      Led.findOneAndUpdate({ id: id }, { status: status }, (err, led) => {
-        console.log("Led: ", led);
-        if (err) return res.status(500).send({ message: "Error on request" });
-
-        if (!led)
-          return res.status(404).send({ message: "User cannot be update" });
-
-        return res.status(200).send({ Led: led });
+      Led.findOneAndUpdate({ id: id }, { status: status }).then(led => {
+        console.log(led);
+        if (led) return res.status(200).send({ Led: id, status: action });
       });
     })
     .catch(error => res.status(503).send({ Error: "Can't reach led out" }));
 };
 
-module.exports.getInfo = (req, res) => {
+const getInfo = (req, res) => {
   Led.find()
     .then(leds => {
       res.status(200).send({ Leds: leds });
@@ -36,18 +29,17 @@ module.exports.getInfo = (req, res) => {
     .catch(err => res.status(503).send({ Error: err }));
 };
 
-module.exports.readSensors = (req, res) => {
+const readSensors = (req, res) => {
   axios
     .get(`http://192.168.1.63/sensor`)
     .then(response => {
       console.log("Sensors");
       const { Temperature, Humidity } = response.data;
       var sensors = [
-        { id: "d01", value: Number(Temperature) },
-        { id: "d02", value: Number(Humidity) }
+        { id: "d01", value: Temperature },
+        { id: "d02", value: Humidity }
       ];
       const all = sensors.map(sensor => {
-        console.log(sensor.id);
         Sensor.findOneAndUpdate(
           { id: sensor.id },
           { valueRead: sensor.value },
@@ -56,7 +48,14 @@ module.exports.readSensors = (req, res) => {
           }
         );
       });
+
       res.status(200).send({ All: all });
     })
     .catch(error => res.status(503).send({ Error: "Can't reach sensor" }));
+};
+
+module.exports = {
+  switchLed,
+  getInfo,
+  readSensors
 };
