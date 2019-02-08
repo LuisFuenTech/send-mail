@@ -6,7 +6,7 @@ const sensorSchema = new Schema(
     id: { type: String },
     name: { type: String },
     type: { type: String },
-    valueRead: { type: String }
+    value: { type: String }
   },
   {
     versionKey: false

@@ -4,6 +4,6 @@ const { usersController } = require("./index");
 
 app.get("/led/:id/:action", usersController.switchLed);
 app.get("/get-info", usersController.getInfo);
-app.get("/read-sensor", usersController.readSensors);
+app.get("/read-sensor", usersController.showSensors);
 
 module.exports = app;
