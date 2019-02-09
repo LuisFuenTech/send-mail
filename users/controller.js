@@ -1,5 +1,6 @@
 const User = require("./user");
 const bcrypt = require("bcrypt-nodejs");
+const jwt = require("../services/jwt");
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
@@ -38,15 +39,20 @@ const registerUser = (req, res) => {
 };
 
 const loginUser = (req, res) => {
-  const { username, password } = req.body;
+  const { username, password, getToken } = req.body;
 
   User.findOne({ username })
     .then(user => {
       if (user) {
         bcrypt.compare(password, user.password, (err, hasMatched) => {
           if (hasMatched) {
-            user.password = undefined;
-            return res.status(200).send({ user });
+            //Token
+            if (getToken) {
+              return res.status(200).send({ token: jwt.createToken(user) });
+            } else {
+              user.password = undefined;
+              return res.status(200).send({ user });
+            }
           } else return res.status(404).send({ Error: "Wrong password" });
         });
       } else return res.status(404).send({ Error: `User don't indentify` });
@@ -56,7 +62,18 @@ const loginUser = (req, res) => {
     });
 };
 
-const getUser = (req, res) => {};
+const getUser = (req, res) => {
+  const { id } = req.params;
+
+  User.findById(id)
+    .then(user => {
+      if (user) return res.status(200).send({ user });
+      else return res.status(404).send({ Error: `User doesn't exist` });
+    })
+    .catch(err => {
+      res.status(500).send({ Error: `Error on query` });
+    });
+};
 
 const updateUser = (req, res) => {};
 
