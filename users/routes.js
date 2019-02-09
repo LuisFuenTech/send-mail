@@ -1,9 +1,6 @@
-const express = require("express");
-const app = express.Router();
-const { usersController } = require("./index");
+const app = require("express").Router();
+const { userController } = require("./index");
 
-app.get("/led/:id/:action", usersController.switchLed);
-app.get("/get-info", usersController.getInfo);
-app.get("/read-sensor", usersController.showSensors);
+app.post("/register", userController.registerUser);
 
 module.exports = app;

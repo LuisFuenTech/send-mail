@@ -3,7 +3,9 @@ const morgan = require("morgan");
 const cors = require("cors");
 const express = require("express");
 const app = express();
-const { usersRoutes } = require("./users/index");
+const { userRoutes } = require("./users/index");
+const { sensorRoutes } = require("./sensors/index");
+const { ledRoutes } = require("./leds/index");
 
 app.use(cors());
 
@@ -28,6 +30,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/control", usersRoutes);
+app.use("/user", userRoutes);
+app.use("/sensor", sensorRoutes);
+app.use("/led", ledRoutes);
+app.use("/", (req, res) => {
+  res.status(200).send("Welcome to Smart home Automation");
+});
 
 module.exports = app;

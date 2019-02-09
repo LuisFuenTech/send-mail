@@ -1,2 +1,3 @@
-module.exports.usersController = require("./controller");
-module.exports.usersRoutes = require("./routes");
+module.exports.userController = require("./controller");
+module.exports.userRoutes = require("./routes");
+module.exports.User = require("./user");

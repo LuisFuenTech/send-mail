@@ -7,9 +7,7 @@ const ledSchema = new Schema(
     name: { type: String },
     status: { type: String }
   },
-  {
-    versionKey: false
-  }
+  { versionKey: false }
 );
 
-module.exports = mongoose.model("Leds", ledSchema);
+module.exports = mongoose.model("Led", ledSchema);

@@ -1,56 +1,54 @@
-const axios = require("axios");
-const Led = require("../leds/led");
-const Sensor = require("../sensors/sensor");
+const User = require("./user");
+const bcrypt = require("bcrypt-nodejs");
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
-const url = "http://192.168.0.14";
 
-const switchLed = (req, res) => {
-  const { id, action } = req.params;
+const registerUser = (req, res) => {
+  const { name, surname, city, email, username, password, nodemcu } = req.body;
 
-  axios
-    .get(`${url}/led?led=${id}&action=${action}`)
-    .then(response => {
-      const { status } = response.data;
+  User.findOne({
+    $or: [{ email: email.toLowerCase() }, { username: username.toLowerCase() }]
+  })
+    .then(user => {
+      if (user) return res.status(400).send({ Error: "User already exists" });
 
-      Led.findOneAndUpdate({ id: id }, { status: status }).then(led => {
-        if (led) return res.status(200).send({ Led: id, status: action });
+      const newUser = new User({
+        name: name,
+        surname: surname,
+        city: city,
+        email: email,
+        username: username,
+        nodemcu: nodemcu
+      });
+
+      bcrypt.hash(password, null, null, (err, hash) => {
+        newUser.password = hash;
+
+        newUser.save().then(err, saved => {
+          if (err)
+            return res.status(400).send({ Error: "User did not register" });
+
+          if (saved) return res.status(200).send({ user: saved });
+        });
       });
     })
-    .catch(error => res.status(503).send({ Error: "Can't reach led out" }));
-};
-
-const getInfo = async (req, res) => {
-  const leds = await Led.find();
-  const sensor = await Sensor.find();
-
-  res.status(200).send({ Leds: leds, Sensor: sensor });
-};
-
-const showSensors = async (req, res) => {
-  await axios.get(`${url}/sensor`).then(response => {
-    var { Temperature, Humidity } = response.data;
-    var sensors = [
-      { id: "d01", value: Temperature },
-      { id: "d02", value: Humidity }
-    ];
-
-    sensors.map(async sensor => {
-      await Sensor.findOneAndUpdate(
-        { id: sensor.id },
-        { value: sensor.value },
-        (err, update) => {
-          if (update) return update;
-        }
-      );
+    .catch(err => {
+      return res.status(500).send({ message: "Error on query" });
     });
-
-    res.status(200).send(response.data);
-  });
 };
+
+const loginUser = (req, res) => {};
+
+const getUser = (req, res) => {};
+
+const updateUser = (req, res) => {};
+
+const getNodemcu = (req, res) => {};
 
 module.exports = {
-  switchLed,
-  getInfo,
-  showSensors
+  registerUser,
+  loginUser,
+  updateUser,
+  getUser,
+  getNodemcu
 };
