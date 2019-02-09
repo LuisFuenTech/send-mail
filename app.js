@@ -3,6 +3,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const express = require("express");
 const app = express();
+const axios = require("axios");
 const { userRoutes } = require("./users/index");
 const { sensorRoutes } = require("./sensors/index");
 const { ledRoutes } = require("./leds/index");
@@ -28,6 +29,16 @@ app.use((req, res, next) => {
   res.header("Allow", "GET, POST, OPTIONS, PUT, DELETE");
 
   next();
+});
+
+app.get("/test", async (req, res) => {
+  const data = await axios
+    .get("https://jsonplaceholder.typicode.com/posts/1")
+    .then(response => response.status)
+    .catch(err => "Axion doesnt work");
+
+  console.log(data);
+  res.status(200).send(data);
 });
 
 app.use("/user", userRoutes);

@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const ledSchema = new Schema(
   {
-    id: { type: String },
+    id: { type: Number },
     name: { type: String },
     status: { type: String }
   },

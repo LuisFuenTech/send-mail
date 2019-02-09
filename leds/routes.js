@@ -1,8 +1,8 @@
-const express = require("express");
-const app = express.Router();
+const app = require("express").Router();
+const auth = require("../services/auth");
 const { ledController } = require("./index");
 
-app.get("/led/:id/:action", ledController.turnLed);
-app.get("/get-info", ledController.getInfo);
+app.get("/:id/:action", auth.ensureAuth, ledController.turnLed);
+app.get("/get-info", auth.ensureAuth, ledController.getInfo);
 
 module.exports = app;

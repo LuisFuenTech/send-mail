@@ -1,22 +1,29 @@
 const axios = require("axios");
-const Led = require("./index");
+const Led = require("./led");
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 const url = "http://192.168.0.14";
 
-const turnLed = (req, res) => {
+const turnLed = async (req, res) => {
   const { id, action } = req.params;
 
-  axios
+  const { status, data } = await axios
     .get(`${url}/led?led=${id}&action=${action}`)
-    .then(response => {
-      const { status } = response.data;
+    .then(response => response)
+    .catch(error => res.status(503).send({ Error: `Can't reacch led` }));
 
-      Led.findOneAndUpdate({ id: id }, { status: status }).then(led => {
-        if (led) return res.status(200).send({ Led: id, status: action });
-      });
-    })
-    .catch(error => res.status(503).send({ Error: "Can't reach led out" }));
+  if (status == 200) {
+    Led.findOneAndUpdate(
+      { id: data.Led },
+      { status: data.status },
+      { new: true }
+    )
+      .then(led => {
+        if (led) return res.status(200).send({ led });
+        else return res.status(401).send({ Error: `Led didn't found` });
+      })
+      .catch(err => res.status(401).send({ Error: `Can't reach led` }));
+  }
 };
 
 const getInfo = async (req, res) => {
