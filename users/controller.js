@@ -28,7 +28,7 @@ const registerUser = (req, res) => {
           if (err)
             return res.status(400).send({ Error: "User did not register" });
 
-          if (saved) return res.status(200).send({ user: saved });
+          if (saved) res.status(200).send({ user: saved });
         });
       });
     })
@@ -37,7 +37,24 @@ const registerUser = (req, res) => {
     });
 };
 
-const loginUser = (req, res) => {};
+const loginUser = (req, res) => {
+  const { username, password } = req.body;
+
+  User.findOne({ username })
+    .then(user => {
+      if (user) {
+        bcrypt.compare(password, user.password, (err, hasMatched) => {
+          if (hasMatched) {
+            user.password = undefined;
+            return res.status(200).send({ user });
+          } else return res.status(404).send({ Error: "Wrong password" });
+        });
+      } else return res.status(404).send({ Error: `User don't indentify` });
+    })
+    .catch(err => {
+      res.status(500).send({ Error: "Error on query" });
+    });
+};
 
 const getUser = (req, res) => {};
 
