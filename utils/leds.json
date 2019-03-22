@@ -1,0 +1,3 @@
+{"_id":{"$oid":"5c5c6b42efd2ea0baeee405c"},"id":"1","name":"Led 1","status":"off"}
+{"_id":{"$oid":"5c5c6ba0efd2ea0baeee4094"},"id":"2","name":"Led 2","status":"off"}
+{"_id":{"$oid":"5c5c6bceefd2ea0baeee40b0"},"id":"3","name":"Led 3","status":"off"}
