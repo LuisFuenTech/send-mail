@@ -1,8 +1,8 @@
-#Export from mondoDB
+## Export from mondoDB
 `mongoexport -d databsae_name -c collection_name -o output_name.json`
 
-#Import from mondoDB
+## Import from mondoDB
 `mongoimport -d databsae_name -c collection_name output_name.json`
 
-##_*Note:*_
+## _*Note:*_
 MongoDB creates a new database if no exits the put one. The _utils_ folder contains the json outputs
