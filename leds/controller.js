@@ -7,6 +7,8 @@ const url = "http://192.168.0.14";
 const turnLed = async (req, res) => {
   const { id, action } = req.params;
 
+  console.log("Turning led");
+
   const { status, data } = await axios
     .get(`${url}/led?led=${id}&action=${action}`)
     .then(response => response)
