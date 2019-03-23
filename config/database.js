@@ -6,9 +6,12 @@ const app = require("../bin/WWW");
 const mongoose = require("mongoose");
 
 mongoose
-  .connect(dbUrl, {
-    useNewUrlParser: true
-  })
+  .connect(
+    "mongodb+srv://fuentech:Atlasfuentech2018@mycluster-aeuut.mongodb.net/test?retryWrites=true",
+    {
+      useNewUrlParser: true
+    }
+  )
   .then(() => {
     console.log("Connected to database");
     app.listen(port, () => {
