@@ -1,12 +1,12 @@
 const port = process.env.PORT || 3000;
 const dbPort = process.env.DB_PORT || 27017;
-const dbUrl = process.env.DB_URL || "localhost";
+const dbUrl = process.env.MONGODB_URL || "localhost";
 const dbCollection = process.env.DB_COLLECTION || "smarthome";
 const app = require("../bin/WWW");
 const mongoose = require("mongoose");
 
 mongoose
-  .connect(`mongodb://${dbUrl}:${dbPort}/${dbCollection}`, {
+  .connect(dbUrl, {
     useNewUrlParser: true
   })
   .then(() => {
