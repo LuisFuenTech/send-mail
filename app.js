@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 app.get("/test", async (req, res) => {
   const data = await axios
     .get("https://jsonplaceholder.typicode.com/posts/1")
-    .then(response => response.status)
+    .then(response => response.data)
     .catch(err => "Axion doesnt work");
 
   console.log(data);
@@ -44,7 +44,7 @@ app.get("/test", async (req, res) => {
 app.use("/user", userRoutes);
 app.use("/sensor", sensorRoutes);
 app.use("/led", ledRoutes);
-app.use("/", (req, res) => {
+app.get("/home", (req, res) => {
   res.status(200).send("Welcome to Smart home Automation");
 });
 
