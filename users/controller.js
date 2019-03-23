@@ -29,6 +29,7 @@ const registerUser = (req, res) => {
           if (err)
             return res.status(400).send({ Error: "User did not register" });
 
+          saved.password = undefined;
           if (saved) res.status(200).send({ user: saved });
         });
       });
@@ -67,6 +68,7 @@ const getUser = (req, res) => {
 
   User.findById(id)
     .then(user => {
+      user.password = undefined;
       if (user) return res.status(200).send({ user });
       else return res.status(404).send({ Error: `User doesn't exist` });
     })
