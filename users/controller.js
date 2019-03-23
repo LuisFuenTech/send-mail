@@ -25,7 +25,7 @@ const registerUser = (req, res) => {
       bcrypt.hash(password, null, null, (err, hash) => {
         newUser.password = hash;
 
-        newUser.save().then(err, saved => {
+        newUser.save().then((saved, err) => {
           if (err)
             return res.status(400).send({ Error: "User did not register" });
 

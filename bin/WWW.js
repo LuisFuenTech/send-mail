@@ -1,6 +1,6 @@
 const app = require("../app");
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT;
 app.set("port", port);
 
 module.exports = app;

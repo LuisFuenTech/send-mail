@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 
 const sensorSchema = new Schema(
   {
@@ -13,4 +13,4 @@ const sensorSchema = new Schema(
   }
 );
 
-module.exports = mongoose.model("Sensor", sensorSchema);
+module.exports = model("Sensor", sensorSchema);

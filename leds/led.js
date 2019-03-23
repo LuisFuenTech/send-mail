@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
+const { Schema, model } = mongoose;
 
 const ledSchema = new Schema(
   {
@@ -10,4 +10,4 @@ const ledSchema = new Schema(
   { versionKey: false }
 );
 
-module.exports = mongoose.model("Led", ledSchema);
+module.exports = model("Led", ledSchema);
