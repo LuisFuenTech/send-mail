@@ -5,6 +5,8 @@ const dbCollection = process.env.DB_COLLECTION || "smarthome";
 const app = require("../bin/WWW");
 const mongoose = require("mongoose");
 
+console.log("DB_URL", dbUrl);
+
 mongoose
   .connect(dbUrl, {
     useNewUrlParser: true
