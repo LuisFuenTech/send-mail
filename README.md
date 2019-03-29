@@ -1,4 +1,4 @@
-# API Global - SmartHome
+# Global API - SmartHome
 ## Export from mondoDB
 `mongoexport -d databsae_name -c collection_name -o output_name.json`
 
@@ -7,3 +7,5 @@
 
 ## _*Note:*_
 MongoDB creates a new database if no exits the put one. The _utils_ folder contains the json outputs
+
+### [Local API](https://github.com/LuisFuenTech/local-smart-home)
