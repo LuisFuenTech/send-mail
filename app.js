@@ -41,7 +41,8 @@ app.get("/test", async (req, res) => {
   res.status(200).send(data);
 });
 
-app.use("/user", userRoutes);
+app.use("/user/", userRoutes);
+
 app.use("/sensor", sensorRoutes);
 app.use("/led", ledRoutes);
 app.get("/home", (req, res) => {
