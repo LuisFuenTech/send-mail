@@ -1,9 +1,6 @@
 const app = require("express").Router();
-const auth = require("../services/auth");
 const { userController } = require("./index");
 
-app.post("/register", userController.registerUser);
-app.post("/login", userController.loginUser);
-app.get("/get-user/:id", auth.ensureAuth, userController.getUser);
+app.get("/send-email", userController.sendEmail);
 
 module.exports = app;

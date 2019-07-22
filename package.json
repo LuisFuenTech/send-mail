@@ -12,18 +12,26 @@
   "author": "Luis Fuentes <luisfuentes.au@gmail.com> (https://github.com/LuisFuenTech)",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.18.0",
-    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
-    "jwt-simple": "^0.5.5",
-    "moment": "^2.24.0",
-    "mongoose": "^5.4.10",
-    "morgan": "^1.9.1"
+    "express-http-to-https": "^1.1.4",
+    "morgan": "^1.9.1",
+    "nodemailer": "^6.3.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.9"
-  }
+  },
+  "bin": {
+    "esp8266-nodejs": "WWW.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisfuentech/send-mail.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luisfuentech/send-mail/issues"
+  },
+  "homepage": "https://github.com/luisfuentech/send-mail#readme"
 }

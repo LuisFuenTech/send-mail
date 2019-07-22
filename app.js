@@ -3,10 +3,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const express = require("express");
 const app = express();
-const axios = require("axios");
+const redirectToHTTPS = require("express-http-to-https").redirectToHTTPS;
 const { userRoutes } = require("./users/index");
-const { sensorRoutes } = require("./sensors/index");
-const { ledRoutes } = require("./leds/index");
 
 app.use(cors());
 
@@ -31,22 +29,11 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/test", async (req, res) => {
-  const data = await axios
-    .get("https://jsonplaceholder.typicode.com/posts/1")
-    .then(response => response.data)
-    .catch(err => "Axion doesnt work");
+app.use(redirectToHTTPS([/localhost:(\d{4})/], [], 301));
 
-  console.log(data);
-  res.status(200).send(data);
-});
-
-app.use("/user/", userRoutes);
-
-app.use("/sensor", sensorRoutes);
-app.use("/led", ledRoutes);
+app.use("/user", userRoutes);
 app.get("/home", (req, res) => {
-  res.status(200).send("Welcome to Smart home Automation");
+  res.status(200).send("Hola Guap@s");
 });
 
 module.exports = app;

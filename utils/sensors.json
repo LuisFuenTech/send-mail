@@ -1,2 +1,0 @@
-{"_id":{"$oid":"5c5c8b7befd2ea0baeee4b1a"},"id":"d01","name":"Temperature","type":"dht11","valueRead":28.3}
-{"_id":{"$oid":"5c5c8b89efd2ea0baeee4b1e"},"id":"d02","name":"Humidity","type":"dht11","valueRead":58}
