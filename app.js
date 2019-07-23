@@ -4,7 +4,7 @@ const cors = require("cors");
 const express = require("express");
 const app = express();
 const redirectToHTTPS = require("express-http-to-https").redirectToHTTPS;
-const { userRoutes } = require("./users/index");
+const { userRoutes } = require("./user/index");
 
 app.use(cors());
 

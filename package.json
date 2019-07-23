@@ -12,11 +12,13 @@
   "author": "Luis Fuentes <luisfuentes.au@gmail.com> (https://github.com/LuisFuenTech)",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
     "express-http-to-https": "^1.1.4",
+    "mongoose": "^5.6.6",
     "morgan": "^1.9.1",
     "nodemailer": "^6.3.0"
   },
