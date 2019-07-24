@@ -106,7 +106,7 @@ const manyRecipients = [
 
 const recipients = [
   "nerirevelacion@gmail.com",
-  "seecing2018@gmail.com",
+  "seeacing2018@gmail.com",
   "luisfau@misena.edu.co"
 ];
 
