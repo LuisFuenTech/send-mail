@@ -126,8 +126,8 @@ const sendOutlook = async (req, res) => {
     await sender(
       "outlook",
       "smtp.office365.com",
-      "seeac.ingenieriasas@outlook.com",
-      "Outlook@seeac2019",
+      "email",
+      "password",
       res
     );
   }
@@ -174,8 +174,8 @@ const sendAny = async (req, res) => {
       host: "smtp.office365.com",
       port: 587,
       auth: {
-        user: "seeac.ingenieriasas@outlook.com",
-        pass: "Outlook@seeac2019"
+        user: "email",
+        pass: "password"
       },
       tls: {
         rejectUnauthorized: false
