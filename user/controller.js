@@ -114,8 +114,8 @@ const sendGmail = async (req, res) => {
   sender(
     "gmail",
     "smtp.gmail.com",
-    "nerirevelacion@gmail.com",
-    "Sanfelipeneri10",
+    "email.com",
+    "password",
     res
   );
 };
@@ -161,8 +161,8 @@ const sendAny = async (req, res) => {
       host: "smtp.gmail.com",
       port: 587,
       auth: {
-        user: "nerirevelacion@gmail.com",
-        pass: "Sanfelipeneri10"
+        user: "email",
+        pass: "password"
       },
       tls: {
         rejectUnauthorized: false
